@@ -17,9 +17,27 @@ int main(void) {
 
     LED_init();
     uart_init();
-    timer_init();
+    timer0_init();
+    timer2_init();
+    int uptimeMs = 0;
+    int time1 = 0;
+    void uptimeTick() {
+        if (bit_is_set(TIFR2, OCF2A)) {
+            uptimeMs++;
+            time1++;
+            TIFR2 = (1 << OCF2A);  // Reset flag
+        }
+    }
 
     while (1) {
+        uptimeTick();
+
+        // TODO: Change this to become now - then and use uptimeMs
+        if (time1 == 1000) {
+            printf("Hi\n");
+            time1 = 0;
+        }
+
         if (bit_is_set(PIND, PD2)) {
             printf("test");
         }
