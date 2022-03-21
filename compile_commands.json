@@ -1,0 +1,19 @@
+[
+    {
+        "arguments": [
+            "avr-gcc",
+            "-c",
+            "-g",
+            "-Wall",
+            "-pedantic",
+            "-O2",
+            "-DF_CPU=16000000UL",
+            "-mmcu=atmega328p",
+            "-o",
+            "main.o",
+            "main.c"
+        ],
+        "directory": "/home/svahnen/Projects/integrated_systems/labb02/Embedded_systems_Arduino_02",
+        "file": "main.c"
+    }
+]

@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "Arduino",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/lib/avr/include/**"
+            ],
+            "compilerPath": "/usr/bin/avr-gcc"
+        }
+    ],
+    "version": 4
+}
