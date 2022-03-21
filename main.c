@@ -7,14 +7,16 @@
 #include "serial.h"
 #include "timer.h"
 
-void main (void) {
+int main(void) {
+    // On my shield I need to jump from thease ports to different ports and thus I set thease to inputs and have them here in main where they will always run and are visable.
+    DDRB &= ~(1 << PB3);  // Set PB3 as output
+    DDRB &= ~(1 << PB0);  // Set PB0 as input
 
-	LED_init();
-	uart_init();
-	timer_init();
+    LED_init();
+    uart_init();
+    timer_init();
 
-	while (1) {
-		// ...
-	}
+    while (1) {
+        // ...
+    }
 }
-
