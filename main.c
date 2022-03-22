@@ -20,11 +20,11 @@ int main(void) {
     timer0_init();
     timer2_init();
     int uptimeMs = 0;
-    int time1 = 0;
+    int buttonTimestamp = 0;
+
     void uptimeTick() {
         if (bit_is_set(TIFR2, OCF2A)) {
             uptimeMs++;
-            time1++;
             TIFR2 = (1 << OCF2A);  // Reset flag
         }
     }
@@ -32,14 +32,15 @@ int main(void) {
     while (1) {
         uptimeTick();
 
-        // TODO: Change this to become now - then and use uptimeMs
-        if (time1 == 1000) {
-            printf("Hi\n");
-            time1 = 0;
+        if (buttonTimestamp == 0) {
+            buttonTimestamp = uptimeMs;
+        } else if (uptimeMs - buttonTimestamp > 1000) {  // 1000 = 1 second
+            printf("buttonTimestamp\n");
+            buttonTimestamp = 0;
         }
 
         if (bit_is_set(PIND, PD2)) {
-            printf("test");
+            printf("Button pressed\n");
         }
     }
 }
