@@ -13,7 +13,7 @@ void button1() {
             buttonTimestamp = uptimeMs;
             printf("pushed\r\n");
         }
-    } else if (buttonTimestamp != 0 && uptimeMs - buttonTimestamp > 10) {  // > "milliseconds"
+    } else if (buttonTimestamp != 0 && uptimeMs - buttonTimestamp > 10) {  // 10ms debounce
         printf("released\r\n");
         buttonTimestamp = 0;
     }
