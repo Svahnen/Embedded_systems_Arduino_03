@@ -12,7 +12,7 @@ void timer2_init() {
     TCCR2B |= (1 << CS21);
     TCCR2B |= (1 << CS22);
 
-    // CTC table 22-9.
+    // CTC mode
     TCCR2A &= (1 << WGM20);
     TCCR2A |= (1 << WGM21);
     TCCR2B &= ~(1 << WGM22);
