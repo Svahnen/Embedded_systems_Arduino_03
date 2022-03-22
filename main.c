@@ -22,7 +22,7 @@ int main(void) {
     timer2_init();
 
     while (1) {
-        uptimeTick();
-        button1();
+        uptimeTick();  // Update global var uptimeMS
+        button1();     // See if button1 is pressed and act on in
     }
 }
