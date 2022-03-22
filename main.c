@@ -15,7 +15,6 @@ int main(void) {
     // My specific shield config ends here
 
     button_init();
-
     LED_init();
     uart_init();
     timer0_init();
