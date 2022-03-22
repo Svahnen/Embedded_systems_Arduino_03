@@ -5,6 +5,10 @@
 
 #include "timer.h"
 
+void button_init() {
+    DDRD &= ~(1 << PB2);  // Set PB2 as input
+}
+
 int buttonTimestamp = 0;
 
 void button1() {

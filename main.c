@@ -14,7 +14,7 @@ int main(void) {
     DDRB &= ~(1 << PB0);  // Set PB0 as input
     // My specific shield config ends here
 
-    DDRD &= ~(1 << PB2);  // Set PB2 as input
+    button_init();
 
     LED_init();
     uart_init();
