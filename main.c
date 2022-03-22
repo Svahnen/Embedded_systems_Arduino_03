@@ -3,6 +3,7 @@
 #include <avr/pgmspace.h>
 #include <stdio.h>
 
+#include "button.h"
 #include "led.h"
 #include "serial.h"
 #include "timer.h"
@@ -19,27 +20,9 @@ int main(void) {
     uart_init();
     timer0_init();
     timer2_init();
-    int uptimeMs = 0;
-    int buttonTimestamp = 0;
-
-    void uptimeTick() {
-        if (bit_is_set(TIFR2, OCF2A)) {
-            uptimeMs++;
-            TIFR2 = (1 << OCF2A);  // Reset flag
-        }
-    }
 
     while (1) {
         uptimeTick();
-
-        if (bit_is_set(PIND, PD2)) {
-            if (buttonTimestamp == 0) {
-                buttonTimestamp = uptimeMs;
-                printf("pushed\r\n");
-            }
-        } else if (buttonTimestamp != 0 && uptimeMs - buttonTimestamp > 10) {  // > "milliseconds"
-            printf("released\r\n");
-            buttonTimestamp = 0;
-        }
+        button1();
     }
 }
