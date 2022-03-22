@@ -32,15 +32,14 @@ int main(void) {
     while (1) {
         uptimeTick();
 
-        if (buttonTimestamp == 0) {
-            buttonTimestamp = uptimeMs;
-        } else if (uptimeMs - buttonTimestamp > 1000) {  // 1000 = 1 second
-            printf("buttonTimestamp\n");
-            buttonTimestamp = 0;
-        }
-
         if (bit_is_set(PIND, PD2)) {
-            printf("Button pressed\n");
+            if (buttonTimestamp == 0) {
+                buttonTimestamp = uptimeMs;
+                printf("pushed\r\n");
+            }
+        } else if (buttonTimestamp != 0 && uptimeMs - buttonTimestamp > 10) {  // > "milliseconds"
+            printf("released\r\n");
+            buttonTimestamp = 0;
         }
     }
 }
