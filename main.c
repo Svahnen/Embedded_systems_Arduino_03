@@ -19,10 +19,7 @@ int main(void) {
     DDRB &= ~(1 << PB0);  // Set PB0 as input
                           // My specific shield config ends here
 
-    // ADC
-
-    // Enable analog 0?
-    DDRC &= ~(1 << PC0);
+    // ADC_init
 
     // AVCC with external capacitor at AREF pin
     ADMUX |= (1 << REFS0);
@@ -44,8 +41,6 @@ int main(void) {
     // Enable ADC
     ADCSRA |= (1 << ADEN);
 
-    // A single conversion is started by writing a '0' to the Power Reduction ADC bit in the Power Reduction Register (PRR.PRADC), page 307 in datasheet
-
     sei();  // Enable global interrupts
     button_init();
     LED_init();
@@ -57,6 +52,6 @@ int main(void) {
         uptimeTick();  // Update global var uptimeMS
         button1();     // See if button1 is pressed and act on in
         printf("%d", adc_value);
-        ADCSRA |= (1 << ADSC);
+        ADCSRA |= (1 << ADSC);  // Trigger ADC
     }
 }
