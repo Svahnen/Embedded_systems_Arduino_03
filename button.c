@@ -16,7 +16,7 @@ void button1() {
         if (buttonTimestamp == 0) {
             buttonTimestamp = uptimeMs;
             printf("pushed\r\n");
-            PRR |= (1 << PRADC);
+            ADCSRA |= (1 << ADSC);
         }
     } else if (buttonTimestamp != 0 && uptimeMs - buttonTimestamp > 10) {  // 10ms debounce
         printf("released\r\n");
