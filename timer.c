@@ -34,6 +34,9 @@ void timer2_init() {
     TCCR2A &= ~(1 << COM2A0);
     TCCR2A |= (1 << COM2A1);
 
+    // Enable interrupt
+    TIMSK2 |= (1 << OCIE2A);
+
     OCR2A = 155;  // Set top counter to 16000000/1024*0.01 -1 since it starts at index 0, to get ~10ms (100Hz)
 }
 

@@ -14,6 +14,11 @@ ISR(ADC_vect) {
     adc_value = ADCH;
 }
 
+ISR(TIMER2_COMPA_vect) {
+    OCR0A = adc_value;
+    ADCSRA |= (1 << ADSC);  // Trigger ADC
+}
+
 int main(void) {
     // On my shield I need to jump from thease ports to different ports and thus I set thease to inputs and have them here in main where they will always run and are visable.
     DDRB &= ~(1 << PB3);  // Set PB3 as input
@@ -29,9 +34,5 @@ int main(void) {
     adc_init();
 
     while (1) {
-        uptimeTick();  // Update global var uptimeMS
-        button1();     // See if button1 is pressed and act on in
-        printf("%d", adc_value);
-        ADCSRA |= (1 << ADSC);  // Trigger ADC
     }
 }
