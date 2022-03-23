@@ -22,13 +22,16 @@ int main(void) {
 
     // MUX: Analog Channel Selection 0000 per default
 
-    // Write one to ADLAR to left adjust the result, page 317 in datasheet
-    ADMUX |= (1 << ADLAR);
-
     // ADPSn: ADC Prescaler Select [n = 2:0], ADPS[2:0] 011 = 8, page 320 in datasheet
     ADCSRA |= (1 << ADPS0);
-    ADCSRA |= (1 << ADPS1);
-    ADCSRA &= ~(1 << ADPS2);
+    // ADCSRA |= (1 << ADPS1);
+    // ADCSRA &= ~(1 << ADPS2);
+
+    // Enable interrupt
+    ADCSRA |= (1 << ADIE);
+
+    // Write one to ADLAR to left adjust the result, page 317 in datasheet
+    ADMUX |= (1 << ADLAR);
 
     // A single conversion is started by writing a '0' to the Power Reduction ADC bit in the Power Reduction Register (PRR.PRADC), page 307 in datasheet
 
@@ -37,6 +40,11 @@ int main(void) {
     uart_init();
     timer0_init();
     timer2_init();
+
+    volatile uint8_t adc_value = 0;
+    ISR(ADC_vect) {
+        adc_value = ADCH;
+    }
 
     while (1) {
         uptimeTick();  // Update global var uptimeMS
