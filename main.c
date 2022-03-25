@@ -17,6 +17,7 @@ ISR(ADC_vect) {
 ISR(TIMER2_COMPA_vect) {
     OCR0A = adc_value;
     ADCSRA |= (1 << ADSC);  // Trigger ADC
+    uptime10Ms++;
 }
 
 int main(void) {
@@ -34,5 +35,6 @@ int main(void) {
     adc_init();
 
     while (1) {
+        button1();
     }
 }

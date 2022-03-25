@@ -18,7 +18,7 @@ void button1() {
             printf("pushed\r\n");
             ADCSRA |= (1 << ADSC);
         }
-    } else if (buttonTimestamp != 0 && uptime10Ms - buttonTimestamp > 10) {  // 10ms debounce
+    } else if (buttonTimestamp != 0 && uptime10Ms - buttonTimestamp > 1) {  // 10ms debounce
         printf("released\r\n");
         buttonTimestamp = 0;
     }

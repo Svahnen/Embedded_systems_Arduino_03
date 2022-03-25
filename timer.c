@@ -41,10 +41,3 @@ void timer2_init() {
 }
 
 int uptime10Ms = 0;
-
-void uptimeTick() {
-    if (bit_is_set(TIFR2, OCF2A)) {
-        uptime10Ms++;
-        TIFR2 = (1 << OCF2A);  // Reset flag
-    }
-}
