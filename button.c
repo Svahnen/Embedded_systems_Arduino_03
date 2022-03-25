@@ -3,6 +3,7 @@
 #include <avr/io.h>
 #include <stdio.h>
 
+#include "state.h"
 #include "timer.h"
 
 void button_init() {

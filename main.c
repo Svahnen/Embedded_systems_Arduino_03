@@ -7,6 +7,7 @@
 #include "button.h"
 #include "led.h"
 #include "serial.h"
+#include "state.h"
 #include "timer.h"
 
 volatile uint8_t adc_value = 0;

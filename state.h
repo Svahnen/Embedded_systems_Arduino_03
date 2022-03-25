@@ -2,5 +2,6 @@
 #define _STATE_
 
 int currentState;
+void nextState(void);
 
 #endif
