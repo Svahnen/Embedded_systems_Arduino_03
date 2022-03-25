@@ -40,11 +40,11 @@ void timer2_init() {
     OCR2A = 155;  // Set top counter to 16000000/1024*0.01 -1 since it starts at index 0, to get ~10ms (100Hz)
 }
 
-int uptimeMs = 0;
+int uptime10Ms = 0;
 
 void uptimeTick() {
     if (bit_is_set(TIFR2, OCF2A)) {
-        uptimeMs++;
+        uptime10Ms++;
         TIFR2 = (1 << OCF2A);  // Reset flag
     }
 }

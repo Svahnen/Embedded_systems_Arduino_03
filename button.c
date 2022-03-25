@@ -14,11 +14,11 @@ int buttonTimestamp = 0;
 void button1() {
     if (bit_is_set(PIND, PD2)) {
         if (buttonTimestamp == 0) {
-            buttonTimestamp = uptimeMs;
+            buttonTimestamp = uptime10Ms;
             printf("pushed\r\n");
             ADCSRA |= (1 << ADSC);
         }
-    } else if (buttonTimestamp != 0 && uptimeMs - buttonTimestamp > 10) {  // 10ms debounce
+    } else if (buttonTimestamp != 0 && uptime10Ms - buttonTimestamp > 10) {  // 10ms debounce
         printf("released\r\n");
         buttonTimestamp = 0;
     }

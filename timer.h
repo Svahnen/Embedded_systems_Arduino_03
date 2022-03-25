@@ -3,7 +3,7 @@
 
 void timer0_init(void);
 void timer2_init(void);
-int uptimeMs;
+int uptime10Ms;
 void uptimeTick();
 
 #endif  // _TIMER_H_
