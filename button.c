@@ -18,7 +18,7 @@ void button1() {
             printf("pushed\r\n");
             ADCSRA |= (1 << ADSC);
         }
-    } else if (buttonTimestamp != 0 && uptime10Ms - buttonTimestamp > 1) {  // 10ms debounce
+    } else if (buttonTimestamp != 0 && uptime10Ms - buttonTimestamp > 1) {  // 10ms debounce, this is not perfect since it can go +- 10ms depending on when the next 10ms tick will happen
         printf("released\r\n");
         buttonTimestamp = 0;
     }
