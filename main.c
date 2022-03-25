@@ -37,5 +37,6 @@ int main(void) {
 
     while (1) {
         button1();  // If we place the state switcher here we always know where in the code the state change will happen
+        stateAction();
     }
 }
