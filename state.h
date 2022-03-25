@@ -3,5 +3,7 @@
 
 int currentState;
 void nextState(void);
+void stateRoutine(void);
+void stateAction(void);
 
 #endif

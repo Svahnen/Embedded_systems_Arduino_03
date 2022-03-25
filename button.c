@@ -16,11 +16,11 @@ void button1() {
     if (bit_is_set(PIND, PD2)) {
         if (buttonTimestamp == 0) {
             buttonTimestamp = uptime10Ms;
-            printf("pushed\r\n");
-            ADCSRA |= (1 << ADSC);
+            printf("Old state %d\r\n", currentState);
+            nextState();
         }
     } else if (buttonTimestamp != 0 && uptime10Ms - buttonTimestamp > 1) {  // 10ms debounce, this is not perfect since it can go +- 10ms depending on when the next 10ms tick will happen
-        printf("released\r\n");
+        printf("New state %d\r\n", currentState);
         buttonTimestamp = 0;
     }
 }

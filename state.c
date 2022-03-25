@@ -2,12 +2,38 @@
 
 #include <avr/io.h>
 
-int currentState = 0;
+#include "adc.h"
+
+int currentState = 1;
 
 void nextState() {
-    if (currentState == 3) {
-        currentState = 0;
+    if (currentState == 4) {
+        currentState = 1;
     } else {
         currentState++;
+    }
+}
+
+void stateRoutine() {
+    if (currentState == 1) {
+        /* code */
+    } else if (currentState == 2) {
+        OCR0A = adc_value;
+    } else if (currentState == 3) {
+        /* code */
+    } else if (currentState == 4) {
+        /* code */
+    }
+}
+
+void stateAction() {
+    if (currentState == 1) {
+        /* code */
+    } else if (currentState == 2) {
+        /* code */
+    } else if (currentState == 3) {
+        /* code */
+    } else if (currentState == 4) {
+        /* code */
     }
 }
