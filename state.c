@@ -20,6 +20,7 @@ void stateRoutine() {  // Runns every 10ms
     if (currentState == 1) {
         OCR0A = simple_ramp();
     } else if (currentState == 2) {
+        ADCSRA |= (1 << ADSC);  // Trigger ADC
         OCR0A = adc_value;
     } else if (currentState == 3) {
         /* code */

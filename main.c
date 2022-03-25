@@ -17,7 +17,6 @@ ISR(ADC_vect) {
 
 ISR(TIMER2_COMPA_vect) {
     stateRoutine();
-    ADCSRA |= (1 << ADSC);  // Trigger ADC
     uptime10Ms++;
 }
 
